@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>School Api</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="schedule"></div>
+	<div id="grades">Grades: </div>
+	<div id="homework">Homework Completed: </div>
+	<div class="test"></div>
+	<textarea id="add_schedule_name"></textarea>
+	<button id="add_schedule_submit">Submit</button>
+</body>
+
+<script>
+
+$(document).ready(function(){
+
+	$.get("/grades", function(grades){
+		$('#grades').append(grades);
+	});
+
+	$.get("/schedule", function(schedule){
+		$('#schedule').append(schedule);
+	});
+
+	$.get("/homework/", function(homework){
+		$('#homework').append(homework);
+	});
+
+	$('#add_schedule_submit').click( function(){
+		var data = $("#add_schedule_name").val();
+		$.post("/schedule", data, function(schedule){
+			$("schedule").text(schedule);
+		});
+	});
+});
+
+</script>
+</html>
