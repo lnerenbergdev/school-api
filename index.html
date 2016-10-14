@@ -32,7 +32,7 @@ $(document).ready(function(){
 	$('#add_schedule_submit').click( function(){
 		var data = $("#add_schedule_name").val();
 		$.post("/schedule", data, function(schedule){
-			$("schedule").text(schedule);
+			$("#schedule").text(schedule);
 		});
 	});
 });
